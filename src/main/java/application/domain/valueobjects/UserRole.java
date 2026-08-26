@@ -1,11 +1,11 @@
 package application.domain.valueobjects;
 
 public final class UserRole extends DomainCatalog {
-    UserRole BUYER = new UserRole("BUYER", "Person who acquires purchased products.");
-    UserRole SELLER = new UserRole("SELLER", "Responsible for registering and managing your products.");
-    UserRole LOGISTICS_OPERATOR = new UserRole("LOGISTICS_OPERATOR", "Responsible for the physical operations of werehouses and shopping facilities.");
-    UserRole ADMIN = new UserRole("ADMIN", "Responsible for the administration of vendors and werehouses.");
-    UserRole SUPERVISOR = new UserRole("SUPERVISOR", "Consultation and operational monitoring profile.")
+    public static final UserRole BUYER = new UserRole("BUYER", "Buyer", "Person who purchases published products.");
+    public static final UserRole SELLER = new UserRole("SELLER", "Seller", "Responsible for registering and managing their products.");
+    public static final UserRole LOGISTICS_OPERATOR = new UserRole("LOGISTICS_OPERATOR", "Logistics Operator", "In charge of the physical operation of warehouses and shipments.");
+    public static final UserRole ADMIN = new UserRole("ADMIN", "Administrator", "Responsible for managing sellers and warehouses.");
+    public static final UserRole SUPERVISOR = new UserRole("SUPERVISOR", "Supervisor", "Profile for operational consultation and monitoring.");
 
     private UserRole(String code, String name, String description) {
         super(code, name, description);
