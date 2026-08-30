@@ -29,4 +29,3 @@ public class Return {
     public void complete() {
         this.status = ReturnStatus.COMPLETED;
     }
-}

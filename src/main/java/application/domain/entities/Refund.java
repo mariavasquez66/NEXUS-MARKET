@@ -16,4 +16,3 @@ public class Refund {
         this.amount = amount;
         this.paymentMethod = paymentMethod;
     }
-}
