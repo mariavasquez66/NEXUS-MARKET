@@ -88,3 +88,22 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - `deleteUser(String)`: Executes logical deletion via `user.delete()` and saves.
 
 ---
+
+### 2.3 Buyer Domain (`application.domain.services.buyer`, `application.domain.exceptions.buyer`)
+- **Exceptions Created**:
+  - `BuyerNotFoundException`: Raised when searching for a non-existent buyer.
+  - `RestrictedBuyerException`: Raised when a buyer with RESTRICTED commercial status attempts unauthorized purchases.
+  - `InvalidAddressException`: Raised when provided delivery addresses are blank or invalid.
+- **Output Port**:
+  - `BuyerRepositoryPort`: Interface for buyer persistence operations (`save`, `findById`, `findByUserId`, `existsById`, `existsByUserId`, `findAll`).
+- **Domain Service**:
+  - `BuyerService`: Implements OBJ-03 (Buyer Management).
+    - `registerBuyer(String id, String userId, String mainAddress)`: Validates that the associated user exists, is active, and possesses the `BUYER` role exclusively. Enforces unique buyer profile per user.
+    - `getBuyerById(String)`: Retrieves a buyer by ID with existence validation.
+    - `getAllBuyers()`: Retrieves all buyers.
+    - `addAdditionalAddress(String, String)`: Adds a non-blank secondary delivery address.
+    - `updateMainAddress(String, String)`: Updates the primary delivery address.
+    - `restrictBuyer(String)`: Transitions commercial status to `RESTRICTED`.
+    - `activateBuyer(String)`: Restores commercial status to `ACTIVE`.
+
+---
