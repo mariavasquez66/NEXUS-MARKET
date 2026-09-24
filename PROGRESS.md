@@ -52,3 +52,18 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - Added `fromCode(String code)` factory methods to all `DomainCatalog` subclasses (`UserRole`, `UserStatus`, `CommercialStatus`, `ProductType`, `ProductStatus`, `OrderStatus`, `PaymentStatus`, `ReturnStatus`, `ShipmentStatus`, `InventoryMovementType`, `WarehouseType`) for safe lookups from incoming strings without using raw strings in the domain model.
 
 ---
+
+## 2. Task 2 & 3 - Domain Exceptions, Ports, and Domain Services
+
+### 2.1 Common & Cross-Cutting Exceptions (`application.domain.exceptions.common`)
+- **`DomainException`**: Abstract base runtime exception for all domain violations across NexusMarket.
+- **`InvalidDataException`**: Thrown when provided inputs/payloads fail domain boundary validations (null, empty, negative, etc.).
+- **`DuplicateEntityException`**: Base exception thrown when an entity already exists with the given unique identifier.
+- **`UnauthenticatedUserException`**: Thrown when an operation lacks authenticated context (RG-01).
+- **`SingleRoleException`**: Thrown when attempting to assign multiple roles to a user (RG-02).
+- **`InsufficientPermissionException`**: Thrown when a user attempts an action outside their role privileges (RG-03, Responsibility Matrix).
+- **`UnauthorizedOperationException`**: Thrown when an operation is prohibited by business state or security matrix.
+- **`InvalidDateRangeException`**: Thrown when query or report date ranges are inverted or invalid.
+- **`NoDataException`**: Thrown when a query or analytical report returns zero records.
+
+---
