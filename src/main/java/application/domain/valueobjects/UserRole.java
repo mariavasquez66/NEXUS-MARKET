@@ -10,4 +10,13 @@ public final class UserRole extends DomainCatalog {
     private UserRole(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static UserRole fromCode(String code) {
+        if ("BUYER".equalsIgnoreCase(code)) return BUYER;
+        if ("SELLER".equalsIgnoreCase(code)) return SELLER;
+        if ("LOGISTICS_OPERATOR".equalsIgnoreCase(code)) return LOGISTICS_OPERATOR;
+        if ("ADMIN".equalsIgnoreCase(code)) return ADMIN;
+        if ("SUPERVISOR".equalsIgnoreCase(code)) return SUPERVISOR;
+        throw new IllegalArgumentException("Invalid user role code: " + code);
+    }
 }

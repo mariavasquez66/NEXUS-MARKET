@@ -20,7 +20,19 @@ public class Seller {
         this.warehouses = new ArrayList<>();
     }
 
+    public Seller(String id, User user, String taxId) {
+        this.id = id;
+        this.user = user;
+        this.taxId = taxId;
+        this.warehouses = new ArrayList<>();
+    }
+
     public void addWarehouse(Warehouse warehouse) {
-        this.warehouses.add(warehouse);
+        if (this.warehouses == null) {
+            this.warehouses = new ArrayList<>();
+        }
+        if (warehouse != null && !this.warehouses.contains(warehouse)) {
+            this.warehouses.add(warehouse);
+        }
     }
 }

@@ -8,4 +8,11 @@ public final class ShipmentStatus extends DomainCatalog {
     private ShipmentStatus(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static ShipmentStatus fromCode(String code) {
+        if ("PENDING".equalsIgnoreCase(code)) return PENDING;
+        if ("IN_TRANSIT".equalsIgnoreCase(code)) return IN_TRANSIT;
+        if ("DELIVERED".equalsIgnoreCase(code)) return DELIVERED;
+        throw new IllegalArgumentException("Invalid shipment status code: " + code);
+    }
 }

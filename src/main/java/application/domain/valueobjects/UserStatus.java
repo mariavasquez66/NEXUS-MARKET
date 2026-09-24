@@ -8,4 +8,11 @@ public final class UserStatus extends DomainCatalog {
     private UserStatus(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static UserStatus fromCode(String code) {
+        if ("ACTIVE".equalsIgnoreCase(code)) return ACTIVE;
+        if ("BLOCKED".equalsIgnoreCase(code)) return BLOCKED;
+        if ("INACTIVE".equalsIgnoreCase(code)) return INACTIVE;
+        throw new IllegalArgumentException("Invalid user status code: " + code);
+    }
 }

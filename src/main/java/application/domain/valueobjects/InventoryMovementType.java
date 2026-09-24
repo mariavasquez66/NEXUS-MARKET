@@ -10,4 +10,13 @@ public final class InventoryMovementType extends DomainCatalog {
     private InventoryMovementType(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static InventoryMovementType fromCode(String code) {
+        if ("INGRESS".equalsIgnoreCase(code)) return INGRESS;
+        if ("RESERVATION".equalsIgnoreCase(code)) return RESERVATION;
+        if ("SALE".equalsIgnoreCase(code)) return SALE;
+        if ("ADJUSTMENT".equalsIgnoreCase(code)) return ADJUSTMENT;
+        if ("RETURN".equalsIgnoreCase(code)) return RETURN;
+        throw new IllegalArgumentException("Invalid inventory movement type code: " + code);
+    }
 }

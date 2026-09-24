@@ -13,6 +13,7 @@ public class User {
     private String email;
     private UserRole role;
     private UserStatus status;
+    private boolean deleted;
 
     public User(String id, String fullName, String email, UserRole role) {
         this.id = id;
@@ -20,6 +21,7 @@ public class User {
         this.email = email;
         this.role = role;
         this.status = UserStatus.ACTIVE;
+        this.deleted = false;
     }
 
     public void block() {
@@ -30,7 +32,24 @@ public class User {
         this.status = UserStatus.ACTIVE;
     }
 
+    public void deactivate() {
+        this.status = UserStatus.INACTIVE;
+    }
+
+    public void delete() {
+        this.deleted = true;
+        this.status = UserStatus.INACTIVE;
+    }
+
     public boolean isActive() {
-        return this.status == UserStatus.ACTIVE;
+        return UserStatus.ACTIVE.equals(this.status) && !deleted;
+    }
+
+    public boolean isBlocked() {
+        return UserStatus.BLOCKED.equals(this.status);
+    }
+
+    public boolean isInactive() {
+        return UserStatus.INACTIVE.equals(this.status);
     }
 }

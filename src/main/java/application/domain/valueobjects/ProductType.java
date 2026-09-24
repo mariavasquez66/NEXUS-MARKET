@@ -7,4 +7,10 @@ public final class ProductType extends DomainCatalog {
     private ProductType(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static ProductType fromCode(String code) {
+        if ("PHYSICAL".equalsIgnoreCase(code)) return PHYSICAL;
+        if ("DIGITAL".equalsIgnoreCase(code)) return DIGITAL;
+        throw new IllegalArgumentException("Invalid product type code: " + code);
+    }
 }

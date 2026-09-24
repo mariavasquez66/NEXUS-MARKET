@@ -8,4 +8,11 @@ public final class PaymentStatus extends DomainCatalog {
     private PaymentStatus(String code, String name, String description) {
         super(code, name, description);
     }
+
+    public static PaymentStatus fromCode(String code) {
+        if ("PENDING".equalsIgnoreCase(code)) return PENDING;
+        if ("CONFIRMED".equalsIgnoreCase(code)) return CONFIRMED;
+        if ("REJECTED".equalsIgnoreCase(code)) return REJECTED;
+        throw new IllegalArgumentException("Invalid payment status code: " + code);
+    }
 }
