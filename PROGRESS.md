@@ -128,3 +128,20 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - `validateSellerHasWarehouses(String)`: Validates that a seller has at least one associated warehouse before allowing product publishing or inventory intake.
 
 ---
+
+### 2.5 Warehouse Domain (`application.domain.services.warehouse`, `application.domain.exceptions.warehouse`)
+- **Exceptions Created**:
+  - `WarehouseNotFoundException`: Raised when looking up a warehouse by identifier that does not exist.
+  - `InvalidWarehouseTypeException`: Raised when an invalid or null warehouse type is provided.
+  - `WarehouseAlreadyAssignedException`: Raised when attempting to assign a warehouse already belonging to another seller.
+- **Output Port**:
+  - `WarehouseRepositoryPort`: Outbound interface managing warehouse queries and persistence (`save`, `findById`, `findAll`, `findBySellerId`, `existsById`).
+- **Domain Service**:
+  - `WarehouseService`: Implements OBJ-04 (Warehouse Management).
+    - `createWarehouse(String id, String name, String address, WarehouseType type, String sellerId)`: Enforces non-blank address and name, validates type, ensures unique ID, associates with seller if `SELLER` type, and updates the seller's warehouse list.
+    - `getWarehouseById(String)`: Retrieves warehouse by ID.
+    - `getAllWarehouses()`: Lists all warehouses across marketplace and sellers.
+    - `updateWarehouse(String, String, String)`: Updates warehouse metadata (name, physical address).
+    - `listWarehousesBySeller(String)`: Retrieves warehouses assigned to a specific verified seller.
+
+---
