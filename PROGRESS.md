@@ -145,3 +145,26 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - `listWarehousesBySeller(String)`: Retrieves warehouses assigned to a specific verified seller.
 
 ---
+
+### 2.6 Catalog & Product Domain (`application.domain.services.product`, `application.domain.exceptions.product`)
+- **Exceptions Created**:
+  - `ProductNotFoundException`: Raised when searching for a non-existent product ID.
+  - `ProductNotPublishedException`: Raised when trying to access or order an unpublished product.
+  - `ProductAlreadyPublishedException`: Raised when attempting to publish a product that is already in `PUBLISHED` status.
+  - `InvalidPriceException`: Raised when product price is negative or zero (violating positive price rule).
+  - `InvalidProductTypeException`: Raised when product type is missing or not recognized.
+- **Output Port**:
+  - `ProductRepositoryPort`: Outbound interface managing product persistence (`save`, `findById`, `findAll`, `findByStatus`, `findBySellerId`, `existsById`, `deleteById`).
+- **Domain Service**:
+  - `CatalogService`: Implements OBJ-05 (Catalog Management).
+    - `registerProduct(...)`: Enforces price > 0 (BigDecimal), validates product type, ensures existence of seller, and validates that sellers of physical products have at least one registered warehouse before registering products.
+    - `getProductById(String)`: Retrieves product by ID.
+    - `listPublishedProducts()`: Returns all products visible to buyers (`ProductStatus.PUBLISHED`).
+    - `listProductsBySeller(String)`: Returns all products offered by a given seller.
+    - `updateProduct(...)`: Allows modification of descriptive fields, price (revalidating positivity), and variants.
+    - `publishProduct(String)`: Changes status from `SUSPENDED` to `PUBLISHED` with physical product warehouse checks.
+    - `hideProduct(String)`: Temporarily suspends the product from public view.
+    - `discontinueProduct(String)`: Permanently discontinues the product.
+    - `deleteProduct(String)`: Executes logical removal of the product from the catalog.
+
+---
