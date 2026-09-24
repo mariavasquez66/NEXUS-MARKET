@@ -107,3 +107,24 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - `activateBuyer(String)`: Restores commercial status to `ACTIVE`.
 
 ---
+
+### 2.4 Seller Domain (`application.domain.services.seller`, `application.domain.exceptions.seller`)
+- **Exceptions Created**:
+  - `SellerNotFoundException`: Raised when looking up a non-existent seller.
+  - `SelfRegistrationNotAllowedException`: Enforces the business rule that sellers cannot self-register.
+  - `SellerWithoutWarehouseException`: Raised when an operation requires an assigned warehouse but seller has none.
+  - `WarehouseAlreadyAssignedException`: Raised when attempting to assign a warehouse already linked to another seller.
+  - `WarehouseNotFoundException`: Raised when the target warehouse for assignment is not found.
+- **Output Ports**:
+  - `SellerRepositoryPort`: Outbound interface for seller storage operations (`save`, `findById`, `findByUserId`, `findByTaxId`, `existsById`, `existsByUserId`, `existsByTaxId`, `findAll`).
+  - `WarehouseRepositoryPort`: Outbound interface for warehouse storage operations (`save`, `findById`, `findAll`, `findBySellerId`, `existsById`).
+- **Domain Service**:
+  - `SellerService`: Implements OBJ-02 (Seller Management).
+    - `registerSeller(String id, String userId, String taxId, String adminUserId)`: Strictly requires an authenticated `ADMIN` user to register sellers. Blocks self-registration attempts. Validates tax ID uniqueness and associated user status/role.
+    - `getSellerById(String)`: Retrieves a seller with existence validation.
+    - `getAllSellers()`: Lists all registered sellers.
+    - `updateSeller(String, String)`: Updates tax ID while ensuring tax ID uniqueness.
+    - `assignWarehouse(String, String)`: Links a warehouse to a seller and marks the warehouse type as `SELLER`, preventing conflicting assignments.
+    - `validateSellerHasWarehouses(String)`: Validates that a seller has at least one associated warehouse before allowing product publishing or inventory intake.
+
+---
