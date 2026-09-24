@@ -67,3 +67,24 @@ This document tracks the incremental progress, domain entity enhancements, excep
 - **`NoDataException`**: Thrown when a query or analytical report returns zero records.
 
 ---
+
+### 2.2 User Domain (`application.domain.services.user`, `application.domain.exceptions.user`)
+- **Exceptions Created**:
+  - `UserNotFoundException`: Raised when looking up a non-existent user identifier.
+  - `DuplicateEmailException`: Raised when attempting to register or update an email that already exists in the system.
+  - `DuplicateIdentificationException`: Raised when a user ID/identification document is already registered.
+  - `InactiveUserException`: Raised when an inactive or blocked user attempts restricted operations.
+  - `InvalidRoleException`: Raised when role assignment is missing, invalid, or violates RG-02.
+- **Output Port**:
+  - `UserRepositoryPort`: Outbound interface abstracting persistence operations (`save`, `findById`, `findByEmail`, `existsById`, `existsByEmail`, `findAll`, `deleteById`).
+- **Domain Service**:
+  - `UserService`: Implements OBJ-01 (User Administration).
+    - `createUser(User)`: Validates mandatory attributes, ID and email uniqueness, role assignment (RG-02), and persists the user.
+    - `getUserById(String)`: Enforces non-blank validation and entity existence check.
+    - `getAllUsers()`: Retrieves all registered users.
+    - `updateUser(String, String, String)`: Allows modification of name and email (with conflict checking), while keeping the user role immutable.
+    - `blockUser(String)`: Invokes domain behavior `user.block()` and saves.
+    - `activateUser(String)`: Invokes domain behavior `user.activate()` and saves.
+    - `deleteUser(String)`: Executes logical deletion via `user.delete()` and saves.
+
+---
