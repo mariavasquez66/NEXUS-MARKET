@@ -168,3 +168,28 @@ This document tracks the incremental progress, domain entity enhancements, excep
     - `deleteProduct(String)`: Executes logical removal of the product from the catalog.
 
 ---
+
+### 2.7 Inventory Domain (`application.domain.services.inventory`, `application.domain.exceptions.inventory`)
+- **Exceptions Created**:
+  - `InventoryNotFoundException`: Raised when inventory does not exist for a given product and warehouse pair.
+  - `InsufficientStockException`: Raised when requested units exceed available unreserved stock.
+  - `NegativeStockException`: Raised when an intake or adjustment results in negative stock, strictly prohibited by the specification.
+  - `DamagedInventoryException`: Enforces the critical validation that damaged stock cannot be reserved for orders.
+  - `InvalidReservationException`: Raised when trying to cancel more reserved units than currently held.
+  - `InvalidAdjustmentException`: Raised when an inventory correction fails domain constraints.
+- **Output Port**:
+  - `InventoryRepositoryPort`: Outbound interface managing inventory records (`save`, `findById`, `findByProductIdAndWarehouseId`, `findByProductId`, `findByWarehouseId`, `findAll`, `existsByProductIdAndWarehouseId`).
+- **Domain Service**:
+  - `InventoryService`: Implements OBJ-06 (Distributed Inventory Management).
+    - `registerInventory(String, String, int)`: Enforces mandatory distributed link between a valid product and a valid warehouse.
+    - `getInventory(String, String)`: Retrieves inventory record for product/warehouse pair.
+    - `addStock(String, String, int)`: Executes INGRESS movement.
+    - `reserveStock(String, String, int)`: Executes RESERVATION movement, strictly verifying stock is not marked as damaged and is sufficient.
+    - `confirmSale(String, String, int)`: Executes SALE movement, deducting from both total and reserved quantities.
+    - `cancelReservation(String, String, int)`: Releases previously reserved stock back to available pool.
+    - `applyAdjustment(String, String, int)`: Executes ADJUSTMENT movement, guaranteeing stock never falls below zero.
+    - `registerReturn(String, String, int)`: Executes RETURN movement, re-incorporating units into inventory.
+    - `getAvailableStock(String, String)`: Computes `quantity - reservedQuantity` (or 0 if damaged).
+    - `markAsDamaged(String, String)` / `markAsRepaired(String, String)`: Controls quality status of inventory units.
+
+---
