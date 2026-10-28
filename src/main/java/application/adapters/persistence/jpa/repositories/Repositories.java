@@ -92,3 +92,4 @@ public final class Repositories {
         Optional<RefundJpaEntity> findByReturnRequestId(String returnRequestId);
     }
 }
+

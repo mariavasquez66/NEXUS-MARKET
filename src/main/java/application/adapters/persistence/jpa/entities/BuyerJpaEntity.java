@@ -87,3 +87,4 @@ public class BuyerJpaEntity {
         this.commercialStatus = commercialStatus;
     }
 }
+

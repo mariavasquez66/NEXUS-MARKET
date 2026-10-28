@@ -11,3 +11,4 @@ public interface ShipmentRepositoryPort {
     Optional<Shipment> findByTrackingNumber(String trackingNumber);
     List<Shipment> findAll();
 }
+

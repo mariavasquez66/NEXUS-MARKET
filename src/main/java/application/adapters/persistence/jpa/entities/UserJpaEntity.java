@@ -88,3 +88,4 @@ public class UserJpaEntity {
         this.deleted = deleted;
     }
 }
+

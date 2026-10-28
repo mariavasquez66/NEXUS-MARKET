@@ -11,3 +11,4 @@ public interface AuditLogMongoRepository extends MongoRepository<AuditLogDocumen
     List<AuditLogDocument> findByUserId(String userId);
     List<AuditLogDocument> findByEntityNameAndEntityId(String entityName, String entityId);
 }
+

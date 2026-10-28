@@ -488,3 +488,4 @@ public final class PersistenceAdapters {
         }
     }
 }
+

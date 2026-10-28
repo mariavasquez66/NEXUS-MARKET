@@ -93,3 +93,4 @@ public class ReturnJpaEntity {
         this.resolutionDate = resolutionDate;
     }
 }
+

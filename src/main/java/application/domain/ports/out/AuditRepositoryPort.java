@@ -9,3 +9,4 @@ public interface AuditRepositoryPort {
     List<AuditLog> findByEntityNameAndEntityId(String entityName, String entityId);
     List<AuditLog> findAll();
 }
+

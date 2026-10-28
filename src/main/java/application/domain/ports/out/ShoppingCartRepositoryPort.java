@@ -9,3 +9,4 @@ public interface ShoppingCartRepositoryPort {
     Optional<ShoppingCart> findByBuyerId(String buyerId);
     void deleteById(String id);
 }
+

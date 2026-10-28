@@ -8,3 +8,4 @@ public interface PublicAccessPort {
     List<Product> searchPublishedProducts();
     Optional<Product> getProductDetails(String productId);
 }
+

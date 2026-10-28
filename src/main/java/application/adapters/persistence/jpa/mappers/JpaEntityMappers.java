@@ -346,3 +346,4 @@ public final class JpaEntityMappers {
         );
     }
 }
+

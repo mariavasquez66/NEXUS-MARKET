@@ -56,3 +56,4 @@ public class SellerJpaEntity {
         this.taxId = taxId;
     }
 }
+

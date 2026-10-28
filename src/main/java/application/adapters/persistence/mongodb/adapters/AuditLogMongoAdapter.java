@@ -46,3 +46,4 @@ public class AuditLogMongoAdapter implements AuditRepositoryPort {
                 .collect(Collectors.toList());
     }
 }
+

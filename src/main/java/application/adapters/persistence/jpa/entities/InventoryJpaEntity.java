@@ -96,3 +96,4 @@ public class InventoryJpaEntity {
         this.damaged = damaged;
     }
 }
+

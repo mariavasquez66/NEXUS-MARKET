@@ -18,3 +18,4 @@ public interface BusinessCustomerPort {
     List<Inventory> getMyInventory(User sellerUser);
     Inventory addStock(User sellerUser, String productId, String warehouseId, int quantity);
 }
+

@@ -230,3 +230,4 @@ All catalog value objects extend the base immutable class `DomainCatalog` or enf
 6. **Order Immutability**: Any order in terminal state (`DELIVERED` / `CANCELLED`) is completely immutable.
 7. **Monetary Precision**: All monetary attributes are represented strictly using `BigDecimal`.
 8. **100% English Code Standard**: All identifiers, class names, method names, enums, exception classes, and log messages in Java are in English.
+

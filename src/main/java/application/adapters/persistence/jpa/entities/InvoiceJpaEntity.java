@@ -119,3 +119,4 @@ public class InvoiceJpaEntity {
         this.voided = voided;
     }
 }
+

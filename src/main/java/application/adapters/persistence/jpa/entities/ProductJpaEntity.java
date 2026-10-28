@@ -124,3 +124,4 @@ public class ProductJpaEntity {
         this.variants = variants;
     }
 }
+

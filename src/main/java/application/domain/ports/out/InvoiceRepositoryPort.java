@@ -9,3 +9,4 @@ public interface InvoiceRepositoryPort {
     Optional<Invoice> findByOrderId(String orderId);
     Optional<Invoice> findByInvoiceNumber(String invoiceNumber);
 }
+

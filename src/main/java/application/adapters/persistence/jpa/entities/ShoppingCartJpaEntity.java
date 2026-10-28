@@ -61,3 +61,4 @@ public class ShoppingCartJpaEntity {
         this.items = items;
     }
 }
+

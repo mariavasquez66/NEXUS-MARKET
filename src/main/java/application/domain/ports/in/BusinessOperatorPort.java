@@ -19,3 +19,4 @@ public interface BusinessOperatorPort {
 
     Return receiveReturnedPackage(User operatorUser, String returnId);
 }
+

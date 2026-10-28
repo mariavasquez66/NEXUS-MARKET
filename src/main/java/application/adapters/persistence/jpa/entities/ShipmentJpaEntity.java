@@ -117,3 +117,4 @@ public class ShipmentJpaEntity {
         this.deliveryDate = deliveryDate;
     }
 }
+

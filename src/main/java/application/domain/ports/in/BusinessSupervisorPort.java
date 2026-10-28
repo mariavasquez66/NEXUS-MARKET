@@ -15,3 +15,4 @@ public interface BusinessSupervisorPort {
     List<AuditLog> auditUserOperations(User supervisorUser, String targetUserId);
     List<AuditLog> auditEntity(User supervisorUser, String entityName, String entityId);
 }
+

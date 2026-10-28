@@ -80,3 +80,4 @@ public class WarehouseJpaEntity {
         this.seller = seller;
     }
 }
+

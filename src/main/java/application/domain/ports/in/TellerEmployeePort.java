@@ -25,3 +25,4 @@ public interface TellerEmployeePort {
 
     List<User> listAllUsers(User adminUser);
 }
+

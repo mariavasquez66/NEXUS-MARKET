@@ -21,3 +21,4 @@ public interface NaturalCustomerPort {
 
     Return requestReturn(User buyerUser, String orderId, String reason);
 }
+
